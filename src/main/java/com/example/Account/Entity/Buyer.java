@@ -6,6 +6,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "buyer")
 public class Buyer extends BaseEntity {
@@ -15,6 +18,7 @@ public class Buyer extends BaseEntity {
 	@Column(name = "name")
 	private String name;
 	
+	@JsonIgnore
 	@JoinColumn(name = "account_id", referencedColumnName = "id")
 	@OneToOne
 	private Account account;

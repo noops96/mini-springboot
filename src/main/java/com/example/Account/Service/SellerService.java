@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.Account.DAO.AccountDAO;
 import com.example.Account.DAO.SellerDAO;
+import com.example.Account.Entity.Buyer;
 import com.example.Account.Entity.Seller;
 import com.example.Account.Model.Pagination;
 
@@ -25,8 +26,9 @@ public class SellerService {
 		return (List<Seller>) sellerDAO.getAll();
 	}
 	
-	public Seller getById(Integer id) {
-		return sellerDAO.getById(id);
+	public Boolean isSellerExist(Integer id) {
+		
+		return sellerDAO.getById(id) == null ? false:true;
 	}
 	
 	public Pagination getPagination(int page , int limit) {
@@ -44,6 +46,9 @@ public class SellerService {
 		seller.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 		accountDAO.add(seller.getAccount());
 		return sellerDAO.add(seller);
+	}
+	public Seller getById(Integer id) {
+		return sellerDAO.getById(id);
 	}
 
 }

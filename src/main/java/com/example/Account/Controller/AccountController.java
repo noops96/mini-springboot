@@ -43,6 +43,28 @@ public class AccountController {
 		return ResponseEntity.ok(account);
 	}
 	
+	@GetMapping(value = "/get-buyer-by-id",params = {"id"})
+	public ResponseEntity<?> getBuyerById(int id) {
+		return ResponseEntity.ok(buyerService.getById(id));
+	}
+	
+	@GetMapping(value = "/get-seller-by-id",params = {"id"})
+	public ResponseEntity<?> getSellerById(int id) {
+		return ResponseEntity.ok(sellerService.getById(id));
+	}
+	
+	@GetMapping(value = "/is-seller-exist",params = {"id"})
+	public ResponseEntity<?> isSellerExist(int id) {
+		Boolean isValid = sellerService.isSellerExist(id);
+		return ResponseEntity.ok(isValid);
+	}
+	
+	@GetMapping(value = "/is-buyer-exist",params = {"id"})
+	public ResponseEntity<?> isBuyerExist(int id) {
+		Boolean isValid = buyerService.isBuyerExist(id);
+		return ResponseEntity.ok(isValid);
+	}
+	
 	@GetMapping(value = "/get-pagination", params = {"page", "limit"})
 	public ResponseEntity<?> getPagination(int page,int limit) {
 		Pagination account = accountService.getPagination(page, limit);
